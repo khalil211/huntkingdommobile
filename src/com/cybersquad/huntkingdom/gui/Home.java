@@ -7,6 +7,7 @@ package com.cybersquad.huntkingdom.gui;
 
 import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
+import com.cybersquad.huntkingdom.gui.animal.Animaux;
 import com.cybersquad.huntkingdom.gui.commande.ListeCommandes;
 import com.cybersquad.huntkingdom.gui.commande.Panier;
 import com.cybersquad.huntkingdom.gui.commande.ShopTemp;
@@ -26,5 +27,6 @@ public class Home extends Form {
         f.getToolbar().addMaterialCommandToLeftSideMenu("Boutique", FontImage.MATERIAL_SHOP, e-> new ShopTemp().show());
         f.getToolbar().addMaterialCommandToLeftSideMenu("Panier", FontImage.MATERIAL_PAYMENT, e-> new Panier().show());
         f.getToolbar().addMaterialCommandToLeftSideMenu("Liste commandes", FontImage.MATERIAL_LIST, e-> new ListeCommandes().show());
+        f.getToolbar().addMaterialCommandToLeftSideMenu("Animaux", FontImage.MATERIAL_BOOK, e-> new Animaux().show());
     }
 }
