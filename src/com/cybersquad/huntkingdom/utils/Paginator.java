@@ -99,8 +99,10 @@ public class Paginator {
     }
 
     public void setElementsPerPage(int elementsPerPage) {
-        if (elementsPerPage>=1)
+        if (elementsPerPage>=1) {
             this.elementsPerPage = elementsPerPage;
+            refresh();
+        }
     }
 
     public int getNbPages() {
