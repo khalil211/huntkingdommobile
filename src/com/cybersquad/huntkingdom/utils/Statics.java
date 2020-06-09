@@ -18,7 +18,8 @@ import com.cybersquad.huntkingdom.gui.Home;
  * @author khalil
  */
 public class Statics {
-    public static final String BASE_URL="http://localhost/huntkingdom/web/app_dev.php";
+    //public static final String BASE_URL="http://localhost/huntkingdom/web/app_dev.php";
+    public static final String BASE_URL="http://localhost:8888/huntkingdomy/web/app_dev.php/";
     public static final String IMAGE_URL="http://localhost/HuntKingdomjava/uploads/";
     
      public static void setLabelStyle(Label l){
