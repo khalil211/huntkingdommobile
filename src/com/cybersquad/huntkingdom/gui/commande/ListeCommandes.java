@@ -5,10 +5,13 @@
  */
 package com.cybersquad.huntkingdom.gui.commande;
 
+import com.codename1.io.FileSystemStorage;
+import com.codename1.io.Util;
 import com.codename1.ui.Button;
 import com.codename1.ui.Command;
 import com.codename1.ui.Container;
 import com.codename1.ui.Dialog;
+import com.codename1.ui.Display;
 import com.codename1.ui.Form;
 import com.codename1.ui.Label;
 import com.codename1.ui.events.ActionEvent;
@@ -19,6 +22,7 @@ import com.cybersquad.huntkingdom.entities.commande.ProduitCommande;
 import com.cybersquad.huntkingdom.gui.Home;
 import com.cybersquad.huntkingdom.services.commande.CommandeService;
 import com.cybersquad.huntkingdom.services.commande.ProduitCommandeService;
+import com.cybersquad.huntkingdom.utils.Paginator;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,6 +38,7 @@ public class ListeCommandes extends Form {
     private ProduitCommandeService produitCommandeS;
     private ArrayList<Commande> commandes;
     private Map<Integer, ArrayList<ProduitCommande>> produits;
+    private Paginator paginator;
     
     public ListeCommandes() {
         current=this;
@@ -47,6 +52,7 @@ public class ListeCommandes extends Form {
                 current.removeShowListener(this);
             }
         });
+        paginator=new Paginator(this);
     }
     
     private void init() {
@@ -59,10 +65,10 @@ public class ListeCommandes extends Form {
             add(new Label("Vous n'avez aucune commande"));
             refreshTheme();
         } else {
+            add(paginator.getAllInOneContainer());
             for (Commande c : commandes) {
                 produits.put(c.getId(), produitCommandeS.getProduitCommande(c));
                 addCommande(c);
-                refreshTheme();
             }
         }
     }
@@ -95,8 +101,24 @@ public class ListeCommandes extends Form {
                 }
             });
             actionsContainer.add(annulerButton);
+        } else if (c.getEtat()==2) {
+            Button factureButton=new Button("Facture");
+            factureButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent l) {
+                    FileSystemStorage fs=FileSystemStorage.getInstance();
+                    String facture="facture"+c.getId()+".pdf";
+                    String facturePath=fs.getAppHomePath()+facture;
+                    if (!fs.exists(facturePath)) {
+                        commandeS.genererFacture(c.getId());
+                        Util.downloadUrlToFile("http://localhost/huntkingdom/web/factures/"+facture, facturePath, true);
+                    }
+                    Display.getInstance().execute(facturePath);
+                }
+            });
+            actionsContainer.add(factureButton);
         }
         commandeContainer.addAll(infosContainer, actionsContainer);
-        add(commandeContainer);
+        paginator.add(commandeContainer);
     }
 }

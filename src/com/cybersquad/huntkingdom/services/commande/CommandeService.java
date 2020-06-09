@@ -105,4 +105,10 @@ public class CommandeService {
         }
         return commandes;
     }
+    
+    public void genererFacture(int idCommande) {
+        String url=Statics.BASE_URL+"/mobile/commande/pdf/"+idCommande;
+        req.setUrl(url);
+        NetworkManager.getInstance().addToQueueAndWait(req);
+    }
 }
