@@ -47,7 +47,7 @@ public boolean resultOK;
     
     
     public boolean addUser(User u) {
-        String url = Statics.BASE_URL+"api/user/create?username="+u.getUsername()+"&email="+u.getEmail()+"&password="+u.getPassword();
+        String url = Statics.BASE_URL+"/api/user/create?username="+u.getUsername()+"&email="+u.getEmail()+"&password="+u.getPassword();
         req.setUrl(url);
         req.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
@@ -62,7 +62,7 @@ public boolean resultOK;
     
     public boolean updatePassword( String password) {
         CurrentUser cu = CurrentUser.CurrentUser();
-        String url = Statics.BASE_URL+"api/user/updatepassword/"+cu.id+"/"+password;
+        String url = Statics.BASE_URL+"/api/user/updatepassword/"+cu.id+"/"+password;
         req.setUrl(url);
         req.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
@@ -122,7 +122,7 @@ public boolean resultOK;
     
     public ArrayList<User> getAllUsers() {
         //String url = Statics.BASE_URL+"api/user/connect/moez";
-        String url = Statics.BASE_URL+"api/user/all";
+        String url = Statics.BASE_URL+"/api/user/all";
         req.setUrl(url);
         req.setPost(false);
         req.addResponseListener(new ActionListener<NetworkEvent>() {
@@ -142,7 +142,7 @@ public boolean resultOK;
     public ArrayList<User> searchUsers() {
         //String url = Statics.BASE_URL+"api/user/connect/moez";
         CurrentUser cu = CurrentUser.CurrentUser();
-        String url = Statics.BASE_URL+"api/user/searchuser/"+cu.search;
+        String url = Statics.BASE_URL+"/api/user/searchuser/"+cu.search;
         req.setUrl(url);
         req.setPost(false);
         req.addResponseListener(new ActionListener<NetworkEvent>() {
@@ -162,7 +162,7 @@ public boolean resultOK;
     public User connectUser(User u) 
     {
         CurrentUser cu = CurrentUser.CurrentUser();
-        String url = Statics.BASE_URL+"api/user/connect/"+u.getUsername();
+        String url = Statics.BASE_URL+"/api/user/connect/"+u.getUsername();
         User s = new User();
         req.setUrl(url);
         req.setPost(false);
@@ -224,7 +224,7 @@ public boolean resultOK;
     {
         CurrentUser cu = CurrentUser.CurrentUser();
         
-        String url = Statics.BASE_URL+"api/user/find/"+id;
+        String url = Statics.BASE_URL+"/api/user/find/"+id;
         User s = new User();
         req.setUrl(url);
         req.setPost(false);
@@ -234,5 +234,12 @@ public boolean resultOK;
         String r=s.getUsername();
         //System.out.println("a"+s.getId());
         return r;
-    }    
+    }  
+    
+    /*public void sendMail()
+    {
+      //connectionRequest = new ConnectionRequest();
+                req.setUrl("http://localhost:8888/huntkingdomy/web/app_dev.php/sendMail.php");
+                NetworkManager.getInstance().addToQueue(req);  
+    }*/
 }

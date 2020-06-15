@@ -12,6 +12,7 @@ import com.codename1.db.Row;
 import com.codename1.ui.Button;
 import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
+import com.codename1.ui.Label;
 import com.codename1.ui.TextArea;
 import com.codename1.ui.TextField;
 import com.codename1.ui.events.ActionEvent;
@@ -21,6 +22,7 @@ import com.cybersquad.huntkingdom.entities.user.CurrentUser;
 import com.cybersquad.huntkingdom.entities.user.User;
 import com.cybersquad.huntkingdom.gui.Home;
 import com.cybersquad.huntkingdom.services.user.UserService;
+import static com.cybersquad.huntkingdom.utils.Statics.setLabelStyle;
 import java.io.IOException;
 
 /**
@@ -38,19 +40,35 @@ Database db;
         setLayout(BoxLayout.y());
         
         SpanLabel sp = new SpanLabel();
+        //Label sp = new Label();
         CurrentUser cu = CurrentUser.CurrentUser();
       
         sp.setText(UserService.getInstance().getAllUsers().toString());
       
         TextField tfUsername = new TextField("","UserName");
         TextField tfPassword = new TextField("","Mot de passe", 20, TextArea.PASSWORD);
+        //setLabelStyle(sp);
         sp.setText("mot de pass ou username incorrect");
         sp.setHidden(true);
         Button btnValider = new Button("Se connecter");
+        Button iforgot = new Button("mot de passe oublié");
         
         
         
-        
+        /*iforgot.addActionListener(new ActionListener() 
+        {
+            
+            User x = new User();
+            @Override
+            public void actionPerformed(ActionEvent evt) 
+            {
+
+                     UserService.getInstance().sendMail();
+ 
+                
+            }
+            
+        });*/
         
         btnValider.addActionListener(new ActionListener() 
         {
@@ -69,7 +87,7 @@ Database db;
                         CurrentUser cu = CurrentUser.CurrentUser();
                         cu.id=x.getId();
                         //System.out.println("connected : "+x.getId());
-                        new Home().show();
+                        new HomePageForm().show();
                         try {
                                 db = Database.openOrCreate("hintkingdom");
                                 
@@ -103,7 +121,7 @@ Database db;
         });
         
         //addAll(sp);
-        addAll(tfUsername,tfPassword,btnValider,sp);
+        addAll(tfUsername,tfPassword,btnValider,sp,iforgot);
         getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK, e-> previous.showBack()); 
     }
     
@@ -151,7 +169,7 @@ try {
                         CurrentUser cu = CurrentUser.CurrentUser();
                         cu.id=x.getId();
                         //System.out.println("connected : "+x.getId());
-                        new Home().show();
+                        new HomePageForm().show();
                     }
                     else
                     {
