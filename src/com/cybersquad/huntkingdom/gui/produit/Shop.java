@@ -25,6 +25,7 @@ import com.cybersquad.huntkingdom.gui.Home;
 import com.cybersquad.huntkingdom.services.commande.ProduitCommandeService;
 import com.cybersquad.huntkingdom.services.produit.ServiceCategorieProduit;
 import com.cybersquad.huntkingdom.services.produit.ServiceProduit;
+import com.cybersquad.huntkingdom.utils.Paginator;
 import com.cybersquad.huntkingdom.utils.Statics;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -36,12 +37,12 @@ import java.util.ArrayList;
 public class Shop extends Form {
     
     private Shop current;
-    private Container produitsC;
     private ArrayList<Produit> produits;
     private ArrayList<CategorieProduit> categories;
     private ComboBox listeCat;
     private EncodedImage enc;
     private TextField recherche;
+    private Paginator paginator;
     
     private ProduitCommandeService pcs;
     
@@ -50,8 +51,8 @@ public class Shop extends Form {
         Home.addMenu(this);
         setTitle("Boutique");
         setLayout(BoxLayout.y());
+        paginator=new  Paginator(this);
         pcs=new ProduitCommandeService();
-        produitsC=new Container();
         ServiceProduit sp=new ServiceProduit();
         produits=sp.getProduits();
         ServiceCategorieProduit scp=new ServiceCategorieProduit();
@@ -75,8 +76,7 @@ public class Shop extends Form {
         
         for (Produit p : produits)
             addProduit(p);
-        
-        add(produitsC);
+        add(paginator.getAllInOneContainer());
     }
     
     private void addProduit(Produit p) {
@@ -111,11 +111,11 @@ public class Shop extends Form {
         produitC.add(infos);
         produitC.setLeadComponent(nomButton);
         ajouterPanier.setBlockLead(true);
-        produitsC.add(produitC);
+        paginator.add(produitC);
     }
     
     private void trier() {
-        produitsC.removeAll();
+        paginator.clear();
         String rechercheTexte=recherche.getText().toLowerCase().trim();
         int catId=-1;
         if (listeCat.getSelectedIndex()!=0)
@@ -124,6 +124,5 @@ public class Shop extends Form {
             if (p.getNom().toLowerCase().trim().contains(rechercheTexte) && (p.getCategorie()==catId || catId==-1))
                 addProduit(p);
         }
-        refreshTheme();
     }
 }

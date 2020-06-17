@@ -19,7 +19,7 @@ import com.cybersquad.huntkingdom.gui.Home;
  */
 public class Statics {
     public static final String BASE_URL="http://localhost/huntkingdom/web/app_dev.php";
-    public static final String IMAGE_URL="http://localhost/HuntKingdomjava/uploads/";
+    public static final String IMAGE_URL="http://localhost/huntkingdom/web/images/";
     
      public static void setLabelStyle(Label l){
         l.getUnselectedStyle().setFgColor(-16777216);
