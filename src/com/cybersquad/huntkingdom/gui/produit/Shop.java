@@ -21,6 +21,7 @@ import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BoxLayout;
 import com.cybersquad.huntkingdom.entities.produit.CategorieProduit;
 import com.cybersquad.huntkingdom.entities.produit.Produit;
+import com.cybersquad.huntkingdom.entities.user.CurrentUser;
 import com.cybersquad.huntkingdom.gui.Home;
 import com.cybersquad.huntkingdom.services.commande.ProduitCommandeService;
 import com.cybersquad.huntkingdom.services.produit.ServiceCategorieProduit;
@@ -104,7 +105,7 @@ public class Shop extends Form {
             @Override
             public void actionPerformed(ActionEvent l) {
                 Dialog.show("Panier", "Produit ajouté au panier", new Command("Ok"));
-                pcs.ajouter(p.getId(),1);// id user
+                pcs.ajouter(p.getId(), CurrentUser.CurrentUser().id);
             }
         });
         infos.addAll(nomButton, new Label(Double.toString(p.getPrix())), ajouterPanier);

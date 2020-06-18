@@ -111,4 +111,10 @@ public class CommandeService {
         req.setUrl(url);
         NetworkManager.getInstance().addToQueueAndWait(req);
     }
+    
+    public void ajouterPanier(int idUser) {
+        String url=Statics.BASE_URL+"/mobile/panier/verifier/"+idUser;
+        req.setUrl(url);
+        NetworkManager.getInstance().addToQueueAndWait(req);
+    }
 }

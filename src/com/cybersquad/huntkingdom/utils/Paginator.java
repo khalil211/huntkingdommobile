@@ -110,6 +110,9 @@ public class Paginator {
     }
     
     public void add(Container element) {
+        element.getAllStyles().setBgColor(0x99CCCC);
+        element.getAllStyles().setBgTransparency(40);
+        element.getAllStyles().setMarginBottom(50);
         elements.add(element);
         refresh();
     }

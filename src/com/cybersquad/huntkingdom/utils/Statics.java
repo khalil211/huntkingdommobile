@@ -22,8 +22,15 @@ public class Statics {
     public static final String IMAGE_URL="http://localhost/huntkingdom/web/images/";
     
      public static void setLabelStyle(Label l){
-        l.getUnselectedStyle().setFgColor(-16777216);
+        //l.getUnselectedStyle().setFgColor(-16777216);
+        //l.getUnselectedStyle().setFgColor(-3413934);
         l.getUnselectedStyle().setFont(Font.createSystemFont(Font.FACE_SYSTEM, Font.STYLE_ITALIC, Font.SIZE_MEDIUM));
+    }
+     
+     public static void setLabelStyleGreen(Label l){
+        //l.getUnselectedStyle().setFgColor(-16777216);
+        l.getUnselectedStyle().setFgColor(-134139134);
+        l.getUnselectedStyle().setFont(Font.createSystemFont(Font.FACE_SYSTEM, Font.STYLE_BOLD, Font.SIZE_LARGE));
     }
      
      public static Button createBackBtn(){

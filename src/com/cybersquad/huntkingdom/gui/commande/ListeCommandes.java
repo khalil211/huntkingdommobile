@@ -19,6 +19,7 @@ import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BoxLayout;
 import com.cybersquad.huntkingdom.entities.commande.Commande;
 import com.cybersquad.huntkingdom.entities.commande.ProduitCommande;
+import com.cybersquad.huntkingdom.entities.user.CurrentUser;
 import com.cybersquad.huntkingdom.gui.Home;
 import com.cybersquad.huntkingdom.services.commande.CommandeService;
 import com.cybersquad.huntkingdom.services.commande.ProduitCommandeService;
@@ -59,7 +60,7 @@ public class ListeCommandes extends Form {
         produits=new HashMap<>();
         commandeS=new CommandeService();
         produitCommandeS=new ProduitCommandeService();
-        commandes=commandeS.getCommandes(1);//id user
+        commandes=commandeS.getCommandes(CurrentUser.CurrentUser().id);
         if (commandes.size()==0) {
             setLayout(BoxLayout.xCenter());
             add(new Label("Vous n'avez aucune commande"));

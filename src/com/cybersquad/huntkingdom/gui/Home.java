@@ -11,7 +11,11 @@ import com.cybersquad.huntkingdom.gui.Dog.AddDog;
 import com.cybersquad.huntkingdom.gui.animal.Animaux;
 import com.cybersquad.huntkingdom.gui.commande.ListeCommandes;
 import com.cybersquad.huntkingdom.gui.commande.Panier;
+import com.cybersquad.huntkingdom.gui.groupe.GroupeForm;
 import com.cybersquad.huntkingdom.gui.produit.Shop;
+import com.cybersquad.huntkingdom.gui.user.HomePageForm;
+import com.cybersquad.huntkingdom.gui.user.LoginForm;
+import com.cybersquad.huntkingdom.gui.user.MyProfileForm;
 import com.cybersquad.huntkingdom.services.Dog.DogService;
 
 /**
@@ -25,7 +29,9 @@ public class Home extends Form {
     }
     
     public static void addMenu(Form f) {
-        f.getToolbar().addMaterialCommandToLeftSideMenu("Accueil", FontImage.MATERIAL_HOME, e-> new Home().show());
+        f.getToolbar().addMaterialCommandToLeftSideMenu("Accueil", FontImage.MATERIAL_HOME, e-> new HomePageForm().show());
+        f.getToolbar().addMaterialCommandToLeftSideMenu("Mon Profil", FontImage.MATERIAL_LIST, e-> new MyProfileForm().show());
+        f.getToolbar().addMaterialCommandToLeftSideMenu("Groupes", FontImage.MATERIAL_LIST, e-> new GroupeForm().show());
         f.getToolbar().addMaterialCommandToLeftSideMenu("Boutique", FontImage.MATERIAL_SHOP, e-> new Shop().show());
         f.getToolbar().addMaterialCommandToLeftSideMenu("Panier", FontImage.MATERIAL_PAYMENT, e-> new Panier().show());
         f.getToolbar().addMaterialCommandToLeftSideMenu("Liste commandes", FontImage.MATERIAL_LIST, e-> new ListeCommandes().show());
@@ -38,5 +44,6 @@ public class Home extends Form {
         });
     
         f.getToolbar().addMaterialCommandToLeftSideMenu("Animaux", FontImage.MATERIAL_BOOK, e-> new Animaux().show());
+        f.getToolbar().addMaterialCommandToLeftSideMenu("Logout", FontImage.MATERIAL_LIST, e-> new LoginForm().show());
     }
 }

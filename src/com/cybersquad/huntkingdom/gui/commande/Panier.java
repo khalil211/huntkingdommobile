@@ -20,6 +20,7 @@ import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BoxLayout;
 import com.cybersquad.huntkingdom.entities.commande.Commande;
 import com.cybersquad.huntkingdom.entities.commande.ProduitCommande;
+import com.cybersquad.huntkingdom.entities.user.CurrentUser;
 import com.cybersquad.huntkingdom.gui.Home;
 import com.cybersquad.huntkingdom.services.commande.CommandeService;
 import com.cybersquad.huntkingdom.services.commande.ProduitCommandeService;
@@ -84,7 +85,7 @@ public class Panier extends Form {
     private void init() {
         commandeS=new CommandeService();
         produitCommandeS=new ProduitCommandeService();
-        commande=commandeS.getPanier(1);//id utilisateur connecte
+        commande=commandeS.getPanier(CurrentUser.CurrentUser().id);
         produits=produitCommandeS.getProduitCommande(commande);
         if (produits.size()==0)
             clearPanier();
