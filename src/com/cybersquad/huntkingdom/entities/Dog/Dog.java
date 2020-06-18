@@ -163,6 +163,11 @@ public class Dog {
     public void setRace(String race) {
         this.race = race;
     }  
+
+    @Override
+    public String toString() {
+        return "Dog{" + "id=" + id + ", userId=" + userId + ", coachId=" + coachId + ", nom=" + nom + ", dateDebut=" + dateDebut + ", age=" + age + ", Maladie=" + Maladie + ", typeChase=" + typeChase + ", note=" + note + ", etat=" + etat + ", username=" + username + ", nomCoach=" + nomCoach + ", race=" + race + '}';
+    }
     
     
 }
